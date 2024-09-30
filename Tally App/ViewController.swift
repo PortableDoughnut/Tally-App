@@ -23,20 +23,12 @@ class ViewController: UIViewController {
 		Int(tallyNumber.text!) ?? 0
 	}
 
-	@IBAction func intervalSelectButtonTapped(_ sender: Any) {
-		let tempTallyNumber = getTallyNumber()
-		
-		interval = Int(intervalTextField.text!) ?? 1
-		intervalTextField.text = ""
-		
-		if textField.hasText {
-			tallyNumber.text = textField.text
-		}
-	}
 	
 	@IBAction func selectButtonTapped(_ sender: UIButton) {
-		tallyNumber.text = textField.text
-		textField.text = ""
+		if textField.hasText {
+			tallyNumber.text = textField.text
+			textField.text = ""
+		}
 		
 		if intervalTextField.hasText {
 			interval = Int(intervalTextField.text!) ?? 1
