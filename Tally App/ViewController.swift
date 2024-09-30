@@ -8,12 +8,49 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+	@IBOutlet weak var tallyNumber: UILabel!
+	@IBOutlet weak var textField: UITextField!
+	@IBOutlet weak var intervalTextField: UITextField!
+	
+	var interval: Int = 1
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view.
 	}
+	
+	func getTallyNumber() -> Int {
+		Int(tallyNumber.text!) ?? 0
+	}
 
-
+	@IBAction func intervalSelectButtonTapped(_ sender: Any) {
+		let tempTallyNumber = getTallyNumber()
+		
+		interval = Int(intervalTextField.text!) ?? 1
+		intervalTextField.text = ""
+		
+		if textField.hasText {
+			tallyNumber.text = textField.text
+		}
+	}
+	
+	@IBAction func selectButtonTapped(_ sender: UIButton) {
+		tallyNumber.text = textField.text
+		textField.text = ""
+		
+		if intervalTextField.hasText {
+			interval = Int(intervalTextField.text!) ?? 1
+			intervalTextField.text = ""
+		}
+	}
+	
+	@IBAction func onPlusTapped(_ sender: Any) {
+		tallyNumber.text = String(getTallyNumber() + (interval))
+	}
+	
+	@IBAction func onMinusTapped(_ sender: Any) {
+		tallyNumber.text = String(getTallyNumber() - interval)
+	}
+	
 }
 
